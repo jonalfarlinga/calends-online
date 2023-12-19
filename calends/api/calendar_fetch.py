@@ -1,8 +1,73 @@
 import requests
 from bs4 import BeautifulSoup as bs
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 import csv
+
+
+# find class dates between start, end, only on weekdays
+def build_dates(start, end, weekdays, holidays):
+    '''
+    returns a dictionary
+    {
+        "dates": [
+            "Mon 01",
+            etc...
+        ],
+        "topic": [
+            "blank",
+            etc...
+        ],
+        "holidays": [
+            "MLK Day",
+            etc...
+        ]
+    }
+    '''
+    week_to_day = {
+        'Sunday': 'S',
+        'Monday': 'M',
+        'Tuesday': 'T',
+        'Wednesday': 'W',
+        'Thursday': 'R',
+        'Friday': 'F',
+        'Saturday': 'A',
+    }
+    date = start  # init date counter
+    day = timedelta(days=1)  # incrementer for date
+    calendar = {  # container for table data
+        "dates": [],
+        "topics": [],
+        "holidays": [],
+    }
+
+    while date <= end:
+        # only add a date if it's one of the user-submitted weekdays
+        if week_to_day[date.strftime('%A')] in weekdays:
+            holi = False  # true if I found a holiday
+
+            # append this date to calendar['dates']
+            calendar['dates'].append(date.strftime('%b %d'))
+
+            # add 'final exams' on last day, or append placeholder for syllabus
+            if date.date() == end.date():
+                calendar['topics'].append("Final Exams")
+            else:
+                calendar['topics'].append('')
+
+            # add holiday info if this date is a holiday
+            for holiday in holidays:
+                if holiday['start'] <= date <= holiday['end']:
+                    calendar['holidays'].append(
+                        f"Holiday - {holiday['name']}")
+                    holi = True
+                    break
+
+            if not holi:  # append empty string if I didn't find a holiday
+                calendar['holidays'].append('')  # add logic for holidays
+        date += day  # increment date
+
+    return calendar
 
 
 # scrape TXST academic calendar for holidays between start and end
