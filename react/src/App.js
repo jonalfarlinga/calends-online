@@ -7,23 +7,13 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>Hello</h1>
-        <table>
-          <thead>
-            <tr>
-              <td>Name</td>
-              <td>Date</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>MLK day</td>
-              <td>1-15-2024</td>
-            </tr>
-          </tbody>
-        </table>
-      <Calendar />
       </header>
+      <main>
+        <h1>Hello</h1>
+        <div className="container">
+          <Calendar />
+        </div>
+      </main>
     </div>
   );
 }
