@@ -11,7 +11,7 @@ def build_dates(start, end, weekdays, holidays):
     returns a dictionary
     {
         "dates": [
-            "Mon 01",
+            "Jan 15",
             etc...
         ],
         "topic": [

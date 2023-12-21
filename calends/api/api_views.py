@@ -41,3 +41,18 @@ def CSV_calendar(request, start, end, weekdays):
 
     class_dates = build_dates(start, end, weekdays, holidays)  # populate list
     return JsonResponse(class_dates)
+
+@require_GET
+def api_list(request):
+    return JsonResponse(
+        {
+            "apis": [
+                {"name": "Texas State", "href": "TXST_calendar"},
+                {"href": "SUU_calendar", "name": "Southern Utah"},
+                {
+                    "href": "CSV_calendar",
+                    "name": "Invalid - Comma-Separated Values"
+                },
+            ]
+        }
+    )

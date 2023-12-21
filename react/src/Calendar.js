@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 function Calendar(props) {
     const [dates, setDates] = useState([]);
+    const [err, setErr] = useState('');
 
-    const fetchData = async () => {
-        const url = 'http://localhost:8000/api/TXST_calendar/010124/050124/MW/';
+    const fetchData = useCallback(async () => {
+        const url = `http://localhost:8000/api/${props.api}/${props.start}/${props.end}/${props.days}/`;
 
         try {
             const response = await fetch(url);
             if (response.ok) {
                 const data = await response.json();
                 const importDates = [];
-                let i=0
-                while (i<data.dates.length) {
+                let i = 0
+                while (i < data.dates.length) {
                     importDates.push({
                         date: data.dates[i],
                         assn: data.holidays[i]
@@ -21,22 +22,24 @@ function Calendar(props) {
                 }
                 setDates(importDates);
             } else {
-                console.log(
-                    "Bad request at registrar.txst.edu",
-                    response.status
-                )
+                setErr(
+                    <div className={"alert alert-warning alert-dismissible"} role="alert">{`Invalid request at ${url}: ` + response.status}</div>
+                );
             }
         } catch (e) {
-            console.error("Failed to fetch at TXST", e);
+            setErr(
+                <div className={"alert alert-danger alert-dismissible"} role="alert">{`Failed to fetch at ${url}: ` + e}</div>
+            );
         }
-    }
+    }, [props]);
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [fetchData]);
 
     return (
         <>
+        <div id="calendar-box" className="mt-3 p-3 col">
           <table className="table table-bordered">
             <thead>
               <tr>
@@ -48,15 +51,17 @@ function Calendar(props) {
             <tbody>
               {dates.map((date) => {
                 return (
-                    <tr key={date.date}>
-                        <td>{date.date}</td>
-                        <td></td>
-                        <td>{date.assn}</td>
-                    </tr>
+                  <tr key={date.date}>
+                    <td>{date.date}</td>
+                    <td></td>
+                    <td>{date.assn}</td>
+                  </tr>
                 )
               })}
             </tbody>
           </table>
+          <div className='liveAlertPlaceholder'>{err}</div>
+        </div>
         </>
     )
 }

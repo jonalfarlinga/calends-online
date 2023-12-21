@@ -1,17 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-import Calendar from './Calendar';
+import InputForm from './InputForm';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src="./calends512.png" alt="logo" />
+        <h1>Hello</h1>
       </header>
       <main>
-        <h1>Hello</h1>
-        <div className="container">
-          <Calendar />
+        <div className="container-xxl">
+          <InputForm />
         </div>
       </main>
     </div>

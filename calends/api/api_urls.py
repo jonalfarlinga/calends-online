@@ -1,5 +1,5 @@
 from django.urls import path
-from .api_views import SUU_calendar, TXST_calendar, CSV_calendar
+from .api_views import SUU_calendar, TXST_calendar, CSV_calendar, api_list
 
 
 urlpatterns = [
@@ -18,4 +18,9 @@ urlpatterns = [
         CSV_calendar,
         name="api_CSV"
     ),
+    path(
+        'api_list/',
+        api_list,
+        name="api_list"
+    )
 ]
