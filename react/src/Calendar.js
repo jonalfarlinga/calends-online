@@ -6,12 +6,14 @@ function Calendar(props) {
 
     const fetchData = useCallback(async () => {
         const url = `http://localhost:8000/api/${props.api}/${props.start}/${props.end}/${props.days}/`;
-
+        setErr('')
+        setDates([])
         try {
             const response = await fetch(url);
             if (response.ok) {
                 const data = await response.json();
                 const importDates = [];
+
                 let i = 0
                 while (i < data.dates.length) {
                     importDates.push({
@@ -20,7 +22,15 @@ function Calendar(props) {
                     });
                     i++;
                 }
-                setDates(importDates);
+
+                if (importDates.length > 0) {
+                    setDates(importDates);
+                } else {
+                    setDates([{
+                        date: "none",
+                        assn: "No class meetings in range",
+                }])
+                }
             } else {
                 setErr(
                     <div className={"alert alert-warning alert-dismissible"} role="alert">{`Invalid request at ${url}: ` + response.status}</div>

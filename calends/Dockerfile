@@ -9,8 +9,8 @@ COPY calends calends
 COPY manage.py manage.py
 COPY requirements.txt requirements.txt
 
-EXPOSE 8000
+EXPOSE 443
 
 RUN pip install -r requirements.txt
 
-CMD gunicorn --bind 0.0.0.0:8000 conference_go.wsgi
+CMD ["python", "manage.py", "runserver", "0.0.0.0:443"]

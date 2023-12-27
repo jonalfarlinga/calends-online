@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: rgb(214, 193, 165);
 }
 
 .App-logo {
@@ -14,7 +15,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #8d795e;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,6 +24,10 @@
   color: white;
 }
 
+.fade-border {
+    background: linear-gradient(#8d795e, rgb(214,193,165));
+    padding:10px
+}
 .App-link {
   color: #61dafb;
 }
@@ -34,4 +39,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+footer {
+    padding-top: 4em;
+    font-size: small;
+}
+
+#calendar-box {
+    background-color: lightgrey;
+    border-radius: 10px;
+}
+
+#App-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1em
+}
+
+main {
+    text-align: center;
 }

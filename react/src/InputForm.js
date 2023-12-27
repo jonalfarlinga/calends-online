@@ -48,24 +48,36 @@ function InputForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
         let start = new Date(formData.start);
-        start = ("0" + (start.getUTCMonth() + 1)).slice(-2) +
-                ("0" + (start.getUTCDate())).slice(-2) +
-                ("" + start.getUTCFullYear()).slice(-2);
         let end = new Date(formData.end);
-        end = ("0" + (end.getUTCMonth() + 1)).slice(-2) +
-              ("0" + (end.getUTCDate())).slice(-2) +
-              ("" + end.getUTCFullYear()).slice(-2);
-        let days = "";
-        if (formData.S) {days += "S"};
-        if (formData.M) {days += "M"};
-        if (formData.T) {days += "T"};
-        if (formData.W) {days += "W"};
-        if (formData.R) {days += "R"};
-        if (formData.F) {days += "F"};
-        if (formData.A) {days += "A"};
+        if (end < start) {
+            setErr(
+                <div className={"alert alert-warning alert-dismissible"} role="alert">Start date must be earlier than end date.</div>
+            )
+        } else if (formData.S + formData.M + formData.T + formData.W +
+            formData.R + formData.F + formData.A === 0) {
+            setErr(
+                <div className={"alert alert-warning alert-dismissible"} role="alert">At least one day of the week must be checked.</div>
+            )
+        } else {
 
-        setErr('');
-        setCalendar(<Calendar start={start} end={end} days={days} api={formData.api}/>);
+            end = ("0" + (end.getUTCMonth() + 1)).slice(-2) +
+                ("0" + (end.getUTCDate())).slice(-2) +
+                ("" + end.getUTCFullYear()).slice(-2);
+            start = ("0" + (start.getUTCMonth() + 1)).slice(-2) +
+                    ("0" + (start.getUTCDate())).slice(-2) +
+                    ("" + start.getUTCFullYear()).slice(-2);
+            let days = "";
+            if (formData.S) {days += "S"};
+            if (formData.M) {days += "M"};
+            if (formData.T) {days += "T"};
+            if (formData.W) {days += "W"};
+            if (formData.R) {days += "R"};
+            if (formData.F) {days += "F"};
+            if (formData.A) {days += "A"};
+
+            setErr('');
+            setCalendar(<Calendar start={start} end={end} days={days} api={formData.api}/>);
+        }
     };
 
     const handleChange = (e) => {
@@ -84,7 +96,6 @@ function InputForm() {
 
     return (
         <>
-          <div id="form-box" className="row">
             <form className="mt-3 mb-3 col" onSubmit={handleSubmit}>
               <div className='liveAlertPlaceholder'>{err}</div>
               <div className="mb-3">
@@ -141,7 +152,6 @@ function InputForm() {
               <button className='btn btn-primary'>Get Calendar</button>
             </form>
             {calendar}
-          </div>
         </>
     )
 }
