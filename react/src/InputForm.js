@@ -31,12 +31,18 @@ function InputForm() {
                 setAPIs(data.apis);
             } else {
                 setErr(
-                    <div className={"alert alert-warning alert-dismissible"} role="alert">{`Invalid request at ${url}: ` + response.status}</div>
+                    <div
+                      className={"alert alert-warning alert-dismissible"}
+                      role="alert">{`Invalid request at ${url}: ` + response.status}
+                    </div>
                 );
             }
         } catch (e) {
             setErr(
-                <div className={"alert alert-danger alert-dismissible"} role="alert">{`Failed to fetch request at ${url}: ` + e}</div>
+                <div
+                  className={"alert alert-danger alert-dismissible"}
+                  role="alert">{`Failed to fetch request at ${url}: ` + e}
+                </div>
             );
         }
     }
@@ -51,12 +57,18 @@ function InputForm() {
         let end = new Date(formData.end);
         if (end < start) {
             setErr(
-                <div className={"alert alert-warning alert-dismissible"} role="alert">Start date must be earlier than end date.</div>
+                <div
+                  className={"alert alert-warning alert-dismissible"}
+                  role="alert">Start date must be earlier than end date.
+                </div>
             )
         } else if (formData.S + formData.M + formData.T + formData.W +
             formData.R + formData.F + formData.A === 0) {
             setErr(
-                <div className={"alert alert-warning alert-dismissible"} role="alert">At least one day of the week must be checked.</div>
+                <div
+                  className={"alert alert-warning alert-dismissible"}
+                  role="alert">At least one day of the week must be checked.
+                </div>
             )
         } else {
 
@@ -99,7 +111,12 @@ function InputForm() {
             <form className="mt-3 mb-3 col" onSubmit={handleSubmit}>
               <div className='liveAlertPlaceholder'>{err}</div>
               <div className="mb-3">
-                  <select onChange={handleChange} value={formData.api} required id="api" name="api" className="form-select">
+                <select
+                  onChange={handleChange}
+                  value={formData.api}
+                  required id="api"
+                  name="api"
+                  className="form-select">
                   <option value="">Choose an Academic Calendar</option>
                   {apis.map(api => {
                     return (
@@ -108,44 +125,98 @@ function InputForm() {
                       </option>
                     )
                   })}
-              </select>
+                </select>
               </div>
               <div className="form-floating mb-3">
-                <input value={formData.start} onChange={handleChange} type="date" required name="start" id="start" className="form-control"/>
+                <input
+                  value={formData.start}
+                  onChange={handleChange}
+                  type="date"
+                  required name="start"
+                  id="start"
+                  className="form-control"/>
                 <label htmlFor="start">First day of class</label>
               </div>
               <div className="form-floating mb-3">
-                <input value={formData.end} onChange={handleChange} type="date" required name="end" id="end" className="form-control"/>
+                <input
+                  value={formData.end}
+                  onChange={handleChange}
+                  type="date"
+                  required name="end"
+                  id="end"
+                  className="form-control"/>
                 <label htmlFor="end">Last day of class</label>
               </div>
               <div className="form-group mb-3" id="days-checklist">
                 <h6>Days that class meets</h6>
                 <div>
-                <input checked={formData.S} onChange={handleCheck} type="checkbox" name="S" id="S" className="form-check-input"/>
+                <input
+                  checked={formData.S}
+                  onChange={handleCheck}
+                  type="checkbox"
+                  name="S"
+                  id="S"
+                  className="form-check-input"/>
                 <label className="form-check-label ms-1 me-3" htmlFor="S">Sunday</label>
                 </div>
                 <div>
-                <input checked={formData.M} onChange={handleCheck} type="checkbox" name="M" id="M" className="form-check-input"/>
+                <input
+                  checked={formData.M}
+                  onChange={handleCheck}
+                  type="checkbox"
+                  name="M"
+                  id="M"
+                  className="form-check-input"/>
                 <label className="form-check-label ms-1 me-3" htmlFor="M">Monday</label>
                 </div>
                 <div>
-                <input checked={formData.T} onChange={handleCheck} type="checkbox" name="T" id="T" className="form-check-input"/>
+                <input
+                  checked={formData.T}
+                  onChange={handleCheck}
+                  type="checkbox"
+                  name="T"
+                  id="T"
+                  className="form-check-input"/>
                 <label className="form-check-label ms-1 me-3" htmlFor="M">Tuesday</label>
                 </div>
                 <div>
-                <input checked={formData.W} onChange={handleCheck} type="checkbox" name="W" id="W" className="form-check-input"/>
+                <input
+                  checked={formData.W}
+                  onChange={handleCheck}
+                  type="checkbox"
+                  name="W"
+                  id="W"
+                  className="form-check-input"/>
                 <label className="form-check-label ms-1 me-3" htmlFor="W">Wednesday</label>
                 </div>
                 <div>
-                <input checked={formData.R} onChange={handleCheck} type="checkbox" name="R" id="R" className="form-check-input"/>
+                <input
+                  checked={formData.R}
+                  onChange={handleCheck}
+                  type="checkbox"
+                  name="R"
+                  id="R"
+                  className="form-check-input"/>
                 <label className="form-check-label ms-1 me-3" htmlFor="R">Thursday</label>
                 </div>
                 <div>
-                <input checked={formData.F} onChange={handleCheck} type="checkbox" name="F" id="F" className="form-check-input"/>
+                <input
+                  checked={formData.F}
+                  onChange={handleCheck}
+                  type="checkbox"
+                  name="F"
+                  id="F"
+                  className="form-check-input"/>
                 <label className="form-check-label ms-1 me-3" htmlFor="F">Friday</label>
                 </div>
                 <div>
-                <input checked={formData.A} onChange={handleCheck} type="checkbox" name="A" id="A" className="form-check-input"/>
+                <input
+                  checked={formData.A}
+                  onChange={handleCheck}
+                  type="checkbox"
+                  name="A"
+                  id="A"
+                  className="form-check-input"/>
                 <label className="form-check-label ms-1 me-3" htmlFor="A">Saturday</label>
                 </div>
               </div>

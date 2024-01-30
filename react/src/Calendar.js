@@ -5,11 +5,13 @@ function Calendar(props) {
     const [err, setErr] = useState('');
 
     const fetchData = useCallback(async () => {
-        const url = `http://localhost:8000/api/${props.api}/${props.start}/${props.end}/${props.days}/`;
-        setErr('')
-        setDates([])
+        const url = "http://localhost:8000/api/";
+        const pars = `${props.api}/${props.start}/${props.end}/${props.days}/`;
+
+        setErr('');
+        setDates([]);
         try {
-            const response = await fetch(url);
+            const response = await fetch(url + pars);
             if (response.ok) {
                 const data = await response.json();
                 const importDates = [];
@@ -33,12 +35,18 @@ function Calendar(props) {
                 }
             } else {
                 setErr(
-                    <div className={"alert alert-warning alert-dismissible"} role="alert">{`Invalid request at ${url}: ` + response.status}</div>
+                    <div
+                      className={"alert alert-warning alert-dismissible"}
+                      role="alert">{`Invalid request at ${url}: ` + response.status}
+                    </div>
                 );
             }
         } catch (e) {
             setErr(
-                <div className={"alert alert-danger alert-dismissible"} role="alert">{`Failed to fetch at ${url}: ` + e}</div>
+                <div
+                  className={"alert alert-danger alert-dismissible"}
+                  role="alert">{`Failed to fetch at ${url}: ` + e}
+                </div>
             );
         }
     }, [props]);
