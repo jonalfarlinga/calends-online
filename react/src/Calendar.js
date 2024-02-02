@@ -6,7 +6,7 @@ function Calendar(props) {
 
     const fetchData = useCallback(async () => {
         const url = "http://localhost:8000/api/";
-        const pars = `${props.api}/${props.start}/${props.end}/${props.days}/`;
+        const pars = `${props.api}/${props.start}/${props.end}/${props.days}`;
 
         setErr('');
         setDates([]);
@@ -15,7 +15,7 @@ function Calendar(props) {
             if (response.ok) {
                 const data = await response.json();
                 const importDates = [];
-
+                console.log(data)
                 let i = 0
                 while (i < data.dates.length) {
                     importDates.push({
