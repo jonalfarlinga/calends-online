@@ -41,11 +41,8 @@ async def SUU_calendar(
     '''
     start = datetime.strptime(start, "%m%d%y")
     end = datetime.strptime(end, "%m%d%y")
-    print(start, end)
     holidays = get_SUU_holidays(start, end)
-    print(holidays)
     class_dates = build_dates(start, end, weekdays, holidays)
-    print(class_dates)
     return CalendOut(
         dates=class_dates['dates'],
         topics=class_dates['topics'],
@@ -82,7 +79,6 @@ async def TXST_calendar(
     holidays = get_TXST_holidays(start, end)
 
     class_dates = build_dates(start, end, weekdays, holidays)
-    print(class_dates)
     return CalendOut(
         dates=class_dates['dates'],
         topics=class_dates['topics'],

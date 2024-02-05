@@ -5,13 +5,13 @@ services:
     command: npm start
     working_dir: /app
     volumes:
-      - ./react:/app
+      - ./vite-react:/app
     environment:
       - HOST=0.0.0.0
-      - PORT=3000
+      - PORT=5173
       - NODE_ENV=development
     ports:
-      - 3000:3000
+      - 5173:5173
   calends:
     build:
       context: ./calends
