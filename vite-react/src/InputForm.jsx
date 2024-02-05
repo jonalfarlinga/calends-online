@@ -21,7 +21,7 @@ function InputForm() {
     const [err, setErr] = useState('')
 
     const getAPIs = async () => {
-        const url = "http://localhost:8000/api/api_list/";
+        const url = "http://localhost:8000/api/list";
 
         try {
             const response = await fetch(url);
