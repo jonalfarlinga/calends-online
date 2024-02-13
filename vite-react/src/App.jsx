@@ -1,5 +1,5 @@
-import './App.css';
-import InputForm from './InputForm.jsx';
+import './styles/App.css';
+import Form from './components/Form.jsx';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <div className="fade-border"><h1>Welcome to Calends</h1></div>
       <main>
         <div id="App-box" className="container mx-auto col m-3">
-          <InputForm />
+          <Form />
         </div>
       </main>
       <footer>
