@@ -13,7 +13,7 @@ Run `docker-compose up` or run the `calends-online` stack in Docker Desktop. Wai
 
 # Run
 
-Once the React App has started, navigate to [localhost:3000](http://localhost:3000) to access the front-end App.
+Once the React App has started, navigate to [localhost:80](http://localhost:80) to access the front-end App.
 
 ![Calends App](img\CalendsApp.png)
 

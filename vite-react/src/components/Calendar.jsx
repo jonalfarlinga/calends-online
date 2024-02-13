@@ -5,7 +5,7 @@ function Calendar(props) {
     const [err, setErr] = useState('');
 
     const fetchData = useCallback(async () => {
-        const url = "http://localhost:8000/api/";
+        const url = `${import.meta.env.VITE_BACKEND_URL}/api/`;
         const pars = `${props.api}/${props.start}/${props.end}/${props.days}`;
 
         setErr('');
@@ -15,7 +15,7 @@ function Calendar(props) {
             if (response.ok) {
                 const data = await response.json();
                 const importDates = [];
-                console.log(data)
+
                 let i = 0
                 while (i < data.dates.length) {
                     importDates.push({
@@ -56,7 +56,7 @@ function Calendar(props) {
     }, [fetchData]);
 
     return (
-        <>
+      <>
         <div id="calendar-box" className="mt-3 p-3 col">
           <table className="table table-bordered">
             <thead>
@@ -80,7 +80,7 @@ function Calendar(props) {
           </table>
           <div className='liveAlertPlaceholder'>{err}</div>
         </div>
-        </>
+      </>
     )
 }
 

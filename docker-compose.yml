@@ -8,11 +8,11 @@ services:
       - ./vite-react:/app
     environment:
       - HOST=0.0.0.0
-      - PORT=5173
+      - PORT=80
       - NODE_ENV=development
       - VITE_BACKEND_URL=http://localhost:8000
     ports:
-      - 5173:5173
+      - 80:80
   calends:
     build:
       context: ./calends
