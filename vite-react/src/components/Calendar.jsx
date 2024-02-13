@@ -5,7 +5,7 @@ function Calendar(props) {
     const [err, setErr] = useState('');
 
     const fetchData = useCallback(async () => {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/api/`;
+        const url = `${import.meta.env.VITE_BACKEND_HOST}/api/`;
         const pars = `${props.api}/${props.start}/${props.end}/${props.days}`;
 
         setErr('');

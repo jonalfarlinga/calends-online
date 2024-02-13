@@ -14,6 +14,6 @@ EXPOSE 80
 ENV HOST=0.0.0.0
 ENV PORT=80
 ENV NODE_ENV=development
-ENV VITE_BACKEND_URL=http://4.156.128.29
+ENV VITE_BACKEND_HOST=https://calends-api.azurewebsites.net
 
 CMD ["npm", "run", "dev"]

@@ -22,7 +22,7 @@ function Form() {
     const [err, setErr] = useState('')
 
     const getAPIs = async () => {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/api/list`;
+        const url = `${import.meta.env.VITE_BACKEND_HOST}/api/list`;
 
         try {
             const response = await fetch(url);
