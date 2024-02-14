@@ -5,8 +5,15 @@ function Calendar(props) {
     const [err, setErr] = useState('');
 
     const fetchData = useCallback(async () => {
-        const url = `${import.meta.env.VITE_BACKEND_HOST}/api/`;
-        const pars = `${props.api}/${props.start}/${props.end}/${props.days}`;
+        const url = new URL(
+            `${import.meta.env.VITE_BACKEND_HOST}/api/${props.api}`
+        );
+        const params = {
+            start: props.start,
+            end: props.end,
+            days: props.days
+        }
+        url.search = new URLSearchParams(params).toString();
 
         setErr('');
         setDates([]);

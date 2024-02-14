@@ -1,5 +1,6 @@
 import './styles/App.css';
 import Form from './components/Form.jsx';
+import WelcomeModal from './components/WelcomeModal.jsx';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       </header>
       <div className="fade-border"><h1>Welcome to Calends</h1></div>
       <main>
+        <WelcomeModal />
         <div id="App-box" className="container mx-auto col m-3">
           <Form />
         </div>

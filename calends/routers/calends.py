@@ -1,5 +1,5 @@
 from fastapi import (
-    APIRouter
+    APIRouter,
 )
 from acl.calendar_fetch import (
     get_CSV_holidays,
@@ -25,8 +25,8 @@ class APIList(BaseModel):
 
 
 @router.get(
-    "/SUU_calendar/{start}/{end}/{weekdays}",
-    response_model=CalendOut
+    "/SUU_calendar",
+    response_model=CalendOut,
 )
 async def SUU_calendar(
     start: str,
@@ -50,7 +50,7 @@ async def SUU_calendar(
     )
 
 
-@router.get("/CSV_calendar/{start}/{end}/{weekdays}")
+@router.get("/CSV_calendar")
 async def CSV_calendar(
     start: str,
     end: str,
@@ -68,7 +68,7 @@ async def CSV_calendar(
     )
 
 
-@router.get("/TXST_calendar/{start}/{end}/{weekdays}")
+@router.get("/TXST_calendar")
 async def TXST_calendar(
     start: str,
     end: str,

@@ -33,16 +33,20 @@ function Form() {
             } else {
                 setErr(
                     <div
-                      className={"alert alert-warning alert-dismissible"}
-                      role="alert">{`Invalid request at ${url}: ` + response.status}
+                      className="alert alert-warning alert-dismissible"
+                      role="alert"
+                    >
+                      {`Invalid request at ${url}: ` + response.status}
                     </div>
                 );
             }
         } catch (e) {
             setErr(
                 <div
-                  className={"alert alert-danger alert-dismissible"}
-                  role="alert">{`Failed to fetch request at ${url}: ` + e}
+                  className="alert alert-danger alert-dismissible"
+                  role="alert"
+                >
+                  {`Failed to fetch request at ${url}: ` + e}
                 </div>
             );
         }
@@ -59,7 +63,7 @@ function Form() {
         if (end < start) {
             setErr(
                 <div
-                  className={"alert alert-warning alert-dismissible"}
+                  className="alert alert-warning alert-dismissible"
                   role="alert">Start date must be earlier than end date.
                 </div>
             )
@@ -67,7 +71,7 @@ function Form() {
             formData.R + formData.F + formData.A === 0) {
             setErr(
                 <div
-                  className={"alert alert-warning alert-dismissible"}
+                  className="alert alert-warning alert-dismissible"
                   role="alert">At least one day of the week must be checked.
                 </div>
             )
@@ -102,9 +106,18 @@ function Form() {
     return (
         <>
             <form className="mt-3 mb-3 col" onSubmit={handleSubmit}>
-              <div className='liveAlertPlaceholder'>{err}</div>
-              <Inputs apis={apis} formData={formData} setFormData={setFormData} />
-              <button className='btn btn-primary'>Get Calendar</button>
+              {err && (
+                <div className='liveAlertPlaceholder'>
+                  {err}
+                </div>
+              )}
+              <Inputs
+                apis={apis}
+                formData={formData}
+                setFormData={setFormData} />
+              <button className='btn btn-primary'>
+                Get Calendar
+              </button>
             </form>
             {calendar}
         </>
