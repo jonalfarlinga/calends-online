@@ -18,7 +18,7 @@ function Calendar(props) {
         setErr('');
         setDates([]);
         try {
-            const response = await fetch(url + pars);
+            const response = await fetch(url);
             if (response.ok) {
                 const data = await response.json();
                 const importDates = [];

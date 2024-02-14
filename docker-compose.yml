@@ -10,7 +10,7 @@ services:
       - HOST=0.0.0.0
       - PORT=80
       - NODE_ENV=development
-      - VITE_BACKEND_URL=http://localhost:8000
+      - VITE_BACKEND_HOST=http://localhost:8000
     ports:
       - 80:80
   calends:

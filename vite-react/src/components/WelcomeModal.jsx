@@ -1,45 +1,40 @@
 export default function WelcomeModal() {
     return (
         <div
-            class="modal fade"
+            className="modal fade"
             id="exampleModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="exampleModalLabel"
-            aria-hidden="false">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
+            aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
                 <h1
-                    class="modal-title fs-5"
+                    className="modal-title fs-5"
                     id="exampleModalLabel"
                 >
                   Welcome!
                 </h1>
                 <button
                     type="button"
-                    class="btn-close"
+                    className="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
                 ></button>
               </div>
-            <div class="modal-body">
-                <p>This website will create an empty syllabus for your next class.</p>
-                <p>On the form, select your institution, and fill in the relevant info for your semester and class session.</p>
-                <p>Click the "Get Calendar" button to generate a table on the page. You can highlight and cut/paste the table to your favorite text editor!</p>
+            <div className="modal-body">
+                <p>This website will create an empty syllabus for your next className.</p>
+                <p>On the form, select your institution, and fill in the relevant info for your semester and className session.</p>
+                <p>Click the Get Calendar button to generate a table on the page. You can highlight and cut/paste the table to your favorite text editor!</p>
+                <p>If you prefer a .docx output, you can get the terminal version of Calends <a href="https://github.com/jonalfarlinga/calends">here.</a></p>
             </div>
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <button
                     type="button"
-                    class="btn btn-secondary"
+                    className="btn btn-secondary"
                     data-bs-dismiss="modal"
                 >
                   Get Started
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                >
-                  Save changes
                 </button>
               </div>
             </div>
