@@ -24,9 +24,10 @@ export default function WelcomeModal() {
               </div>
             <div className="modal-body">
                 <p>This website will create an empty syllabus for your next className.</p>
-                <p>On the form, select your institution, and fill in the relevant info for your semester and className session.</p>
-                <p>Click the Get Calendar button to generate a table on the page. You can highlight and cut/paste the table to your favorite text editor!</p>
-                <p>If you prefer a .docx output, you can get the terminal version of Calends <a href="https://github.com/jonalfarlinga/calends">here.</a></p>
+                <p>On the form, select your institution, and fill in the relevant info for your semester and className session. Then Click the Get Calendar button to generate a table on the page. You can highlight and cut/paste the table to your favorite text editor!</p>
+                <p>I plan to implement .docx output soon, but if you want it now, you can get the terminal version of Calends <a href="https://github.com/jonalfarlinga/calends">here.</a></p>
+                <p>To report bugs or request new institutions or features, start an issue on <a href="https://github.com/jonalfarlinga/calends-online/issues">Github</a> or contact me on <a href="mailto:denny.bucklin@gmail.com">Gmail.</a></p>
+                <p>Enjoy!</p>
             </div>
               <div className="modal-footer">
                 <button
