@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img className="mt-3" src="./calends512.png" alt="logo" />
+        <img className="mt-3 hero" src="./calends512.png" alt="logo" />
       </header>
       <div className="fade-border"><h1>Calends Online</h1></div>
       <main>
