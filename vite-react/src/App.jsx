@@ -14,7 +14,7 @@ function App() {
           type="button"
           className="btn btn-primary"
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal">
+          data-bs-target="#welcomeModal">
             About
         </button>
         <WelcomeModal />

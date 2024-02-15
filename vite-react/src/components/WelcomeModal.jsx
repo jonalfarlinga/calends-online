@@ -2,16 +2,16 @@ export default function WelcomeModal() {
     return (
         <div
             className="modal fade"
-            id="exampleModal"
+            id="welcomeModal"
             tabIndex="-1"
-            aria-labelledby="exampleModalLabel"
+            aria-labelledby="welcomeModalLabel"
             aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
                 <h1
                     className="modal-title fs-5"
-                    id="exampleModalLabel"
+                    id="welcomeModalLabel"
                 >
                   Welcome!
                 </h1>
@@ -23,7 +23,7 @@ export default function WelcomeModal() {
                 ></button>
               </div>
             <div className="modal-body">
-                <p>This website will create an empty syllabus for your next className.</p>
+                <p>This website will create an empty syllabus for your next class.</p>
                 <p>On the form, select your institution, and fill in the relevant info for your semester and className session. Then Click the Get Calendar button to generate a table on the page. You can highlight and cut/paste the table to your favorite text editor!</p>
                 <p>I plan to implement .docx output soon, but if you want it now, you can get the terminal version of Calends <a href="https://github.com/jonalfarlinga/calends">here.</a></p>
                 <p>To report bugs or request new institutions or features, start an issue on <a href="https://github.com/jonalfarlinga/calends-online/issues">Github</a> or contact me on <a href="mailto:denny.bucklin@gmail.com">Gmail.</a></p>
@@ -32,7 +32,7 @@ export default function WelcomeModal() {
               <div className="modal-footer">
                 <button
                     type="button"
-                    className="btn btn-secondary"
+                    className="btn btn-primary"
                     data-bs-dismiss="modal"
                 >
                   Get Started
