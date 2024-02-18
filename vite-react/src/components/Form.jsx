@@ -15,8 +15,7 @@ const initialData = {
     api: "",
 };
 
-function Form() {
-    const [calendar, setCalendar] = useState('');
+function Form({calendar, setCalendar}) {
     const [formData, setFormData] = useState(initialData);
     const [apis, setAPIs] = useState([])
     const [err, setErr] = useState('')
@@ -115,7 +114,12 @@ function Form() {
                 apis={apis}
                 formData={formData}
                 setFormData={setFormData} />
-              <button className='btn btn-primary'>
+              <button
+                className=
+                  { "btn btn-primary " + calendar === 'TXST_calendar' ?
+                    "btn-txst" : calendar === 'SUU_calendar' ?
+                    "btn-suu" : null }
+              >
                 Get Calendar
               </button>
             </form>

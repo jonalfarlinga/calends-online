@@ -17,7 +17,10 @@ export default function WelcomeModal() {
                 </h1>
                 <button
                     type="button"
-                    className="btn-close"
+                    className=
+                      { "btn btn-primary " + calendar === 'TXST_calendar' ?
+                        "btn-txst" : calendar === 'SUU_calendar' ?
+                        "btn-suu" : null }
                     data-bs-dismiss="modal"
                     aria-label="Close"
                 ></button>
@@ -32,7 +35,10 @@ export default function WelcomeModal() {
               <div className="modal-footer">
                 <button
                     type="button"
-                    className="btn btn-primary"
+                    className=
+                      { "btn btn-primary " + calendar === 'TXST_calendar' ?
+                        "btn-txst" : calendar === 'SUU_calendar' ?
+                        "btn-suu" : null }
                     data-bs-dismiss="modal"
                 >
                   Get Started
