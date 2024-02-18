@@ -74,6 +74,7 @@ async def TXST_calendar(
     end: str,
     weekdays: str
 ):
+    print('hello')
     start = datetime.strptime(start, "%m%d%y")
     end = datetime.strptime(end, "%m%d%y")
     holidays = get_TXST_holidays(start, end)

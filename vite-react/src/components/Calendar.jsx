@@ -11,10 +11,9 @@ function Calendar(props) {
         const params = {
             start: props.start,
             end: props.end,
-            days: props.days
+            weekdays: props.days
         }
         url.search = new URLSearchParams(params).toString();
-
         setErr('');
         setDates([]);
         try {
