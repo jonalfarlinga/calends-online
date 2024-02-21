@@ -1,3 +1,5 @@
+import Suu from '../styles/Suu.jsx'
+
 export default function Inputs(props) {
     const {formData, setFormData, apis} = props
     const handleChange = (e) => {
@@ -162,6 +164,12 @@ export default function Inputs(props) {
                   </label>
                 </div>
               </div>
+              {formData.api == "TXST_calendar" && (
+                null
+              )}
+              {formData.api == "SUU_calendar" && (
+                <Suu />
+              )}
         </>
     )
 }

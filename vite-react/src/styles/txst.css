@@ -1,0 +1,23 @@
+/* TXST format */
+
+.App {
+    background-color: #AC9155;
+}
+
+.App-header {
+    background-color: #501214;
+}
+
+.fade-border {
+    background: linear-gradient(#501214, #AC9155);
+}
+
+.btn {
+    background-color: #266725;
+    border-color: #419E69;
+}
+
+.btn:hover {
+    background-color: #266725;
+    border-color: #266725;
+}
