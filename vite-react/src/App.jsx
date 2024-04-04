@@ -4,26 +4,22 @@ import WelcomeModal from './components/WelcomeModal.jsx';
 import { useState } from 'react';
 
 function App() {
-    const [calendar, setCalendar] = useState('');
+  const [uniStyle, setUniStyle] = useState(null)
   return (
     <div
       className=
-        { "App " + calendar === 'TXST_calendar' ?
-          "txst" : calendar === 'SUU_calendar' ?
-          "suu" : null }
+        { "App " + uniStyle ? uniStyle : null }
     >
       <header
         className=
-          { "App-header " + calendar === 'TXST_calendar' ?
-            "txst-header" : calendar === 'SUU_calendar' ?
-            "suu-header" : null }
+          { "App-header " + uniStyle ? uniStyle + "-header" : null }
       >
         <img className="mt-3 hero" src="./calends512.png" alt="logo" />
       </header>
       <div
-        className={ "fade-border " + calendar === 'TXST_calendar' ?
-            "fade-border-txst" : calendar === 'SUU_calendar' ?
-            "fade-border-suu" : null }
+        className=
+          { "fade-border " +
+            uniStyle ? "fade-border-" + uniStyle : null }
       >
         <h1>Calends Online</h1>
       </div>
@@ -31,16 +27,14 @@ function App() {
         <button
           type="button"
           className=
-            { "btn btn-primary " + calendar === 'TXST_calendar' ?
-              "btn-txst" : calendar === 'SUU_calendar' ?
-              "btn-suu" : null }
+            { "btn btn-primary " + uniStyle ? "btn-" + uniStyle : null }
           data-bs-toggle="modal"
           data-bs-target="#welcomeModal">
             About
         </button>
-        <WelcomeModal />
+        <WelcomeModal uniStyle={uniStyle} />
         <div id="App-box" className="container mx-auto col m-3">
-          <Form calendar={calendar} setCalendar={setCalendar} />
+          <Form uniStyle={uniStyle} setUniStyle={setUniStyle} />
         </div>
 
       </main>

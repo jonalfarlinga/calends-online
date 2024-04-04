@@ -15,7 +15,8 @@ const initialData = {
     api: "",
 };
 
-function Form({calendar, setCalendar}) {
+function Form({uniStyle, setUnistyle}) {
+    const [calendar, setCalendar] = useState(null);
     const [formData, setFormData] = useState(initialData);
     const [apis, setAPIs] = useState([])
     const [err, setErr] = useState('')
@@ -57,6 +58,7 @@ function Form({calendar, setCalendar}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setCalendar(null)
         let start = new Date(formData.start);
         let end = new Date(formData.end);
         if (end < start) {
@@ -113,12 +115,13 @@ function Form({calendar, setCalendar}) {
               <Inputs
                 apis={apis}
                 formData={formData}
-                setFormData={setFormData} />
+                setFormData={setFormData}
+                uniStyle={uniStyle}
+                setUnistyle={setUnistyle} />
               <button
                 className=
-                  { "btn btn-primary " + calendar === 'TXST_calendar' ?
-                    "btn-txst" : calendar === 'SUU_calendar' ?
-                    "btn-suu" : null }
+                  { "btn btn-primary " +
+                    uniStyle ? "btn-" + uniStyle : null }
               >
                 Get Calendar
               </button>

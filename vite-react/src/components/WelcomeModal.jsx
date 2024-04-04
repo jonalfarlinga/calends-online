@@ -1,4 +1,4 @@
-export default function WelcomeModal() {
+export default function WelcomeModal({uniSyle}) {
     return (
         <div
             className="modal fade"
@@ -18,9 +18,8 @@ export default function WelcomeModal() {
                 <button
                     type="button"
                     className=
-                      { "btn btn-primary " + calendar === 'TXST_calendar' ?
-                        "btn-txst" : calendar === 'SUU_calendar' ?
-                        "btn-suu" : null }
+                      { "btn btn-primary " +
+                        uniStyle ? "btn-" + uniSyle : null }
                     data-bs-dismiss="modal"
                     aria-label="Close"
                 ></button>
@@ -36,9 +35,8 @@ export default function WelcomeModal() {
                 <button
                     type="button"
                     className=
-                      { "btn btn-primary " + calendar === 'TXST_calendar' ?
-                        "btn-txst" : calendar === 'SUU_calendar' ?
-                        "btn-suu" : null }
+                      { "btn btn-primary " +
+                        uniStyle ? "btn-" + uniStyle : null }
                     data-bs-dismiss="modal"
                 >
                   Get Started
