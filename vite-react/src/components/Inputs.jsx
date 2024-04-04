@@ -1,6 +1,13 @@
 export default function Inputs(props) {
-    const {formData, setFormData, apis} = props
+    const {formData, setFormData, apis, uniStyle, setUniStyle} = props
     const handleChange = (e) => {
+        if (e.target.name === "api") {
+          setUniStyle(
+            e.target.value === 'TXST_calendar' ? "txst" :
+              e.target.value === 'SUU_calendar' ? "suu" :
+              null
+          )
+        }
         setFormData({
           ...formData,
           [e.target.name]: e.target.value

@@ -45,6 +45,10 @@ footer {
     padding: 1em
 }
 
+.hero {
+    border-radius: 3rem;
+}
+
 main {
     text-align: center;
 }

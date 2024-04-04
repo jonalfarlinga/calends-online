@@ -15,8 +15,8 @@ const initialData = {
     api: "",
 };
 
-function Form() {
-    const [calendar, setCalendar] = useState('');
+function Form({uniStyle, setUnistyle}) {
+    const [calendar, setCalendar] = useState(null);
     const [formData, setFormData] = useState(initialData);
     const [apis, setAPIs] = useState([])
     const [err, setErr] = useState('')
@@ -58,6 +58,7 @@ function Form() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setCalendar(null)
         let start = new Date(formData.start);
         let end = new Date(formData.end);
         if (end < start) {
@@ -114,8 +115,14 @@ function Form() {
               <Inputs
                 apis={apis}
                 formData={formData}
-                setFormData={setFormData} />
-              <button className='btn btn-primary'>
+                setFormData={setFormData}
+                uniStyle={uniStyle}
+                setUnistyle={setUnistyle} />
+              <button
+                className=
+                  { "btn btn-primary " +
+                    uniStyle ? "btn-" + uniStyle : null }
+              >
                 Get Calendar
               </button>
             </form>
