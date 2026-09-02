@@ -15,14 +15,15 @@ const initialData = {
     api: "",
 };
 
-function Form({uniStyle, setUnistyle}) {
+function Form({uniStyle, setUniStyle}) {
     const [calendar, setCalendar] = useState(null);
     const [formData, setFormData] = useState(initialData);
     const [apis, setAPIs] = useState([])
     const [err, setErr] = useState('')
 
     const getAPIs = async () => {
-        const url = `${import.meta.env.VITE_BACKEND_HOST}/api/list`;
+        const backendHost = import.meta.env.VITE_BACKEND_HOST || window.location.origin;
+        const url = `${backendHost}/api/list`;
 
         try {
             const response = await fetch(url);
@@ -117,7 +118,7 @@ function Form({uniStyle, setUnistyle}) {
                 formData={formData}
                 setFormData={setFormData}
                 uniStyle={uniStyle}
-                setUnistyle={setUnistyle} />
+                setUniStyle={setUniStyle} />
               <button
                 className=
                   { "btn btn-primary " +

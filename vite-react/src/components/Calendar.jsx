@@ -5,8 +5,9 @@ function Calendar(props) {
     const [err, setErr] = useState('');
 
     const fetchData = useCallback(async () => {
+        const backendHost = import.meta.env.VITE_BACKEND_HOST || window.location.origin;
         const url = new URL(
-            `${import.meta.env.VITE_BACKEND_HOST}/api/${props.api}`
+            `${backendHost}/api/${props.api}`
         );
         const params = {
             start: props.start,

@@ -2,6 +2,12 @@
 *.docx
 config.json
 
+# packaging: built frontend copied into the backend for PyInstaller
+/calends/static/
+
+# local debugging fixtures
+/docs/
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies

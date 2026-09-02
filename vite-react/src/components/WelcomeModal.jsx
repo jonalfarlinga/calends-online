@@ -1,4 +1,4 @@
-export default function WelcomeModal({uniSyle}) {
+export default function WelcomeModal({uniStyle}) {
     return (
         <div
             className="modal fade"
@@ -19,7 +19,7 @@ export default function WelcomeModal({uniSyle}) {
                     type="button"
                     className=
                       { "btn btn-primary " +
-                        uniStyle ? "btn-" + uniSyle : null }
+                        uniStyle ? "btn-" + uniStyle : null }
                     data-bs-dismiss="modal"
                     aria-label="Close"
                 ></button>

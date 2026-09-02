@@ -33,6 +33,42 @@ Calends creates a table in html and presents it filling in class dates and holid
 
 ![CalendsOutput](img\CalendsOut.png)
 
+# Portable Windows Build
+
+For end users who don't have Docker, Python, or Node installed, Calends is also available as a single portable `.exe` for Windows. No installation is required.
+
+1. Get `CalendsOnline.exe` from whoever shared it with you.
+2. Double-click it. A console window will open and your default browser will open automatically to the app.
+3. Use the app as described above in [Run](#run).
+4. When you're done, close the console window to stop Calends.
+
+### Building the portable exe yourself
+
+The exe bundles the FastAPI backend together with a production build of the React frontend, so there's nothing else to install on the end user's machine.
+
+1. Set up a Python virtual environment and install the backend dependencies, plus PyInstaller:
+   ```
+   cd calends
+   python -m venv .venv
+   .venv\Scripts\python.exe -m pip install -r requirements.txt pyinstaller
+   ```
+2. Build the frontend and copy it into the backend:
+   ```
+   cd vite-react
+   npm install
+   npm run build
+   cd ..
+   rmdir /s /q calends\static
+   mkdir calends\static
+   xcopy /e /i vite-react\dist calends\static
+   ```
+3. Build the exe:
+   ```
+   cd calends
+   .venv\Scripts\python.exe -m PyInstaller --onefile --name CalendsOnline --add-data "static;static" --hidden-import uvicorn.lifespan.on --hidden-import uvicorn.lifespan.off --hidden-import uvicorn.protocols.http.auto --hidden-import uvicorn.protocols.websockets.auto --hidden-import uvicorn.loops.auto --console launcher.py
+   ```
+4. The finished, portable exe is at `calends/dist/CalendsOnline.exe`. It's the only file you need to hand off.
+
 # Contact and Copyright
 
 Created by Denny Bucklin aka [jonalfarlinga](https://github.com/jonalfarlinga)
