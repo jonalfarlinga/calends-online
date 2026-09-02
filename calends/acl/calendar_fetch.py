@@ -81,25 +81,30 @@ def get_TXST_holidays(start, end):
     for td in soup.findAll('td'):
         # get all <td> if they contain a <div data-categories="Holidays">
         if td.find('div', attrs={'data-categories': 'Holidays'}):
-            holiday = {}  # init a dict
+            try:
+                holiday = {}  # init a dict
 
-            # pull name of holiday
-            holiday['name'] = td.find(
-                'div',
-                attrs={'class': 'event-title'}
-            ).text
+                # pull name of holiday
+                holiday['name'] = td.find(
+                    'div',
+                    attrs={'class': 'event-title'}
+                ).text
 
-            # pull start date
-            holiday['start'] = datetime.strptime(td.find(
-                'div',
-                attrs={'class': 'event-data'}
-            )['data-startdate'], "%Y-%m-%d")
+                # pull start date
+                holiday['start'] = datetime.strptime(td.find(
+                    'div',
+                    attrs={'class': 'event-data'}
+                )['data-startdate'], "%Y-%m-%d")
 
-            # pull end date
-            holiday['end'] = datetime.strptime(td.find(
-                'div',
-                attrs={'class': 'event-data'}
-            )['data-enddate'], "%Y-%m-%d")
+                # pull end date
+                holiday['end'] = datetime.strptime(td.find(
+                    'div',
+                    attrs={'class': 'event-data'}
+                )['data-enddate'], "%Y-%m-%d")
+            except (AttributeError, KeyError, ValueError, TypeError) as e:
+                # skip a malformed row instead of failing the whole request
+                print(f"Skipping malformed TXST holiday row: {e}")
+                continue
 
             # append the details if the dates overlap with class dates
             if (start <= holiday['start'] <= end or
@@ -130,32 +135,37 @@ def get_SUU_holidays(start, end):
         for tr in soup.findAll('tr'):
             # get all <td> if they contain a <div data-categories="Holidays">
             if tr(text="No classes"):
-                holiday = {}  # init a dict
+                try:
+                    holiday = {}  # init a dict
 
-                td = tr.find('td')
+                    td = tr.find('td')
 
-                # pull start date
+                    # pull start date
 
-                date = td.text
-                if "thru" in date:
-                    start_date, end_date = date.split("thru")
-                    start_date = start_date.strip() + " " + year
-                    end_date = end_date.strip() + " " + year
-                else:
-                    start_date = end_date = date + " " + year
+                    date = td.text
+                    if "thru" in date:
+                        start_date, end_date = date.split("thru")
+                        start_date = start_date.strip() + " " + year
+                        end_date = end_date.strip() + " " + year
+                    else:
+                        start_date = end_date = date + " " + year
 
-                holiday['start'] = datetime.strptime(
-                    start_date,
-                    "%A, %B %d %Y"
-                )
-                holiday['end'] = datetime.strptime(
-                    end_date,
-                    "%A, %B %d %Y"
-                )
-                td = td.find_next()
+                    holiday['start'] = datetime.strptime(
+                        start_date,
+                        "%A, %B %d %Y"
+                    )
+                    holiday['end'] = datetime.strptime(
+                        end_date,
+                        "%A, %B %d %Y"
+                    )
+                    td = td.find_next()
 
-                # pull name of holiday
-                holiday['name'] = td.text
+                    # pull name of holiday
+                    holiday['name'] = td.text
+                except (AttributeError, KeyError, ValueError, TypeError) as e:
+                    # skip a malformed row instead of failing the whole request
+                    print(f"Skipping malformed SUU holiday row: {e}")
+                    continue
 
                 # append the details if the dates overlap with class dates
                 if (start <= holiday['start'] <= end or

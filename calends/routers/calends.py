@@ -39,10 +39,10 @@ async def SUU_calendar(
         "topics": list of blanks for filling in topic for the day,
         "assignments": list that is blank except on holidays,
     '''
-    start = datetime.strptime(start, "%m%d%y")
-    end = datetime.strptime(end, "%m%d%y")
-    holidays = get_SUU_holidays(start, end)
-    class_dates = build_dates(start, end, weekdays, holidays)
+    start_date = datetime.strptime(start, "%m%d%y")
+    end_date = datetime.strptime(end, "%m%d%y")
+    holidays = get_SUU_holidays(start_date, end_date)
+    class_dates = build_dates(start_date, end_date, weekdays, holidays)
     return CalendOut(
         dates=class_dates['dates'],
         topics=class_dates['topics'],
@@ -56,15 +56,14 @@ async def CSV_calendar(
     end: str,
     weekdays: str
 ):
-    start = datetime.strptime(start, "%m%d%y")
-    end = datetime.strptime(end, "%m%d%y")
-    holidays = get_CSV_holidays(start, end)
-
-    class_dates = build_dates(start, end, weekdays, holidays)
+    start_date = datetime.strptime(start, "%m%d%y")
+    end_date = datetime.strptime(end, "%m%d%y")
+    holidays = get_CSV_holidays(start_date, end_date)
+    class_dates = build_dates(start_date, end_date, weekdays, holidays)
     return CalendOut(
         dates=class_dates['dates'],
         topics=class_dates['topics'],
-        lidays=class_dates['holidays'],
+        holidays=class_dates['holidays'],
     )
 
 
@@ -74,12 +73,11 @@ async def TXST_calendar(
     end: str,
     weekdays: str
 ):
-    print('hello')
-    start = datetime.strptime(start, "%m%d%y")
-    end = datetime.strptime(end, "%m%d%y")
-    holidays = get_TXST_holidays(start, end)
+    start_date = datetime.strptime(start, "%m%d%y")
+    end_date = datetime.strptime(end, "%m%d%y")
+    holidays = get_TXST_holidays(start_date, end_date)
 
-    class_dates = build_dates(start, end, weekdays, holidays)
+    class_dates = build_dates(start_date, end_date, weekdays, holidays)
     return CalendOut(
         dates=class_dates['dates'],
         topics=class_dates['topics'],
