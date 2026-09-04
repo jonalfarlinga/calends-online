@@ -79,37 +79,38 @@ def get_TXST_holidays(start, end):
 
     holidays = []
     for td in soup.findAll('td'):
-        # get all <td> if they contain a <div data-categories="Holidays">
-        if td.find('div', attrs={'data-categories': 'Holidays'}):
-            try:
-                holiday = {}  # init a dict
+        data = td.find('div', attrs={'class': 'event-data'})
+        title = td.find('div', attrs={'class': 'event-title'})
+        if not data or not title:
+            continue
 
-                # pull name of holiday
-                holiday['name'] = td.find(
-                    'div',
-                    attrs={'class': 'event-title'}
-                ).text
+        # TXST files some no-class periods (Fall Break, Spring Break) under
+        # "Overview of Important Dates" rather than "Holidays", so match
+        # breaks by title as well as by category
+        name = title.text.strip()
+        categories = data.get('data-categories', '').split(';')
+        if ('Holidays' not in categories and
+           not re.search(r'\bbreaks?\b', name, re.IGNORECASE)):
+            continue
 
-                # pull start date
-                holiday['start'] = datetime.strptime(td.find(
-                    'div',
-                    attrs={'class': 'event-data'}
-                )['data-startdate'], "%Y-%m-%d")
+        try:
+            holiday = {
+                'name': name,
+                # pull start and end dates
+                'start': datetime.strptime(
+                    data['data-startdate'], "%Y-%m-%d"),
+                'end': datetime.strptime(
+                    data['data-enddate'], "%Y-%m-%d"),
+            }
+        except (KeyError, ValueError, TypeError) as e:
+            # skip a malformed row instead of failing the whole request
+            print(f"Skipping malformed TXST holiday row: {e}")
+            continue
 
-                # pull end date
-                holiday['end'] = datetime.strptime(td.find(
-                    'div',
-                    attrs={'class': 'event-data'}
-                )['data-enddate'], "%Y-%m-%d")
-            except (AttributeError, KeyError, ValueError, TypeError) as e:
-                # skip a malformed row instead of failing the whole request
-                print(f"Skipping malformed TXST holiday row: {e}")
-                continue
-
-            # append the details if the dates overlap with class dates
-            if (start <= holiday['start'] <= end or
-               start <= holiday['end'] <= end):
-                holidays.append(holiday)
+        # append the details if the dates overlap with class dates
+        if (start <= holiday['start'] <= end or
+           start <= holiday['end'] <= end):
+            holidays.append(holiday)
 
     return holidays
 
